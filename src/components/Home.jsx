@@ -3,6 +3,13 @@ import { useEffect } from "react";
 import { GetApiAction } from "../redux/action";
 
 const Home = () => {
+  const cardStyle = {
+    display: "grid",
+    gridGap: "20px",
+    gridTemplateColumns: "repeat(4, 1fr)",
+    gridTemplateRows: "400px 400px 400px",
+    width: "100%",
+  };
   const dispatch = useDispatch();
   const responseData = useSelector((state) => state.reducer.details);
 
@@ -15,13 +22,7 @@ const Home = () => {
     <>
       <div
         className="container"
-        style={{
-          display: "grid",
-          gridGap: "20px",
-          gridTemplateColumns: "repeat(4, 1fr)",
-          gridTemplateRows: "400px 400px 400px",
-          width: "100%",
-        }}
+        style={cardStyle}
       >
         {responseData
           ? responseData.map((product, index) => {
