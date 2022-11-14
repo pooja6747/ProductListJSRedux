@@ -10,6 +10,11 @@ const Home = () => {
     gridTemplateRows: "400px 400px 400px",
     width: "100%",
   };
+
+  const imgStyle ={
+    height: "250px",
+     width: "300px"
+  }
   const dispatch = useDispatch();
   const responseData = useSelector((state) => state.reducer.details);
 
@@ -34,7 +39,7 @@ const Home = () => {
                       src={image}
                       className="card-img-top"
                       alt="title"
-                      style={{ height: "250px", width: "300px" }}
+                      style={imgStyle}
                     />
                     <div className="card-body">
                       <h5 className="card-title">{title}</h5>
