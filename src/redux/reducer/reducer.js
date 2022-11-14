@@ -1,17 +1,24 @@
-import { GET_DETAILS } from "../type";
-
+import { ActionType } from "../ActionType";
+//import { Action } from "../action";
 
 const initialState = {
   details: [],
+  product : []
 };
 
-
 //initialState(state) means information show on browser
-
+// interface Action{
+//   payload: any;
+//   type: any;
+//   title: any;
+//    image: any;
+//     price: any;
+//      category: any;
+// }
 //action reducer
-const Reducer = (state = initialState, action) => {
+export const Reducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_DETAILS:
+    case ActionType.GET_DETAILS:
       return {
         details: action.payload,
       };
@@ -21,4 +28,5 @@ const Reducer = (state = initialState, action) => {
   }
 };
 
-export default Reducer;
+
+

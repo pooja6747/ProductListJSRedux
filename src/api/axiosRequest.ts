@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export async function AxiosRequest(url, method, headers, params) {
+export async function AxiosRequest(url: string, method: string, headers: { "Content-type": string; }, params: {}) {
   return params
     ? axios({
         url: url,
@@ -23,6 +23,12 @@ const GetApiDetails = () => {
   return AxiosRequest("https://fakestoreapi.com/products", "GET", headers, {});
 };
 
+// const ProductDetails = (id) => {
+//   const headers = {
+//     "Content-type": "application/json",
+//   };
+//   return AxiosRequest(`https://fakestoreapi.com/products/${id}`, "GET", headers, {});
+// };
 
 export {
   GetApiDetails,

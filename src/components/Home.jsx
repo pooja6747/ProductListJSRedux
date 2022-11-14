@@ -1,9 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { GetApiAction } from "../redux/action";
+import { State } from "../redux/reducer/rootReducer";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const dispatch = useDispatch();
+  // const {} = bindActionCreators(actionCreator)
   const responseData = useSelector((state) => state.reducer.details);
 
   useEffect(() => {
@@ -28,6 +31,7 @@ const Home = () => {
               const { title, image, price, category } = product;
               return (
                 <>
+                <Link to={`/detail/${index}`}>
                   <div className="card" key={index}>
                     <img
                       src={image}
@@ -41,6 +45,7 @@ const Home = () => {
                       <p className="card-text">{category}</p>
                     </div>
                   </div>
+                  </Link>
                 </>
               );
             })
