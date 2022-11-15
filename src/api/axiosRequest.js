@@ -23,8 +23,15 @@ const GetApiDetails = () => {
   return AxiosRequest("https://fakestoreapi.com/products", "GET", headers, {});
 };
 
+const FetchDetails = (id) => {
+  console.log(id);
+  const headers = {
+    "Content-type": "application/json",
+  };
+  return AxiosRequest(`https://fakestoreapi.com/products/${id}`, "GET", headers, {});
+};
 
 export {
-  GetApiDetails,
+  GetApiDetails,FetchDetails
   
 };

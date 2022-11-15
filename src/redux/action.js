@@ -1,14 +1,9 @@
-
-import { GetApiDetails } from "../api/axiosRequest";
-import { GET_DETAILS } from "./type";
-
-
-
-
+import { FetchDetails, GetApiDetails } from "../api/axiosRequest";
+import { GET_DETAILS, SELECTED_PRODUCT } from "./type";
 
 export const GetApiAction = () => {
   //object return
-return function (dispatch ) {
+  return function (dispatch) {
     return GetApiDetails().then((response) => {
       dispatch({
         type: GET_DETAILS,
@@ -18,6 +13,13 @@ return function (dispatch ) {
   };
 };
 
-
-
-
+export const FetchAction = (id) => {
+  return function (dispatch) {
+    return FetchDetails(id).then((response) => {
+      dispatch({
+        type: SELECTED_PRODUCT,
+        payload: response.data,
+      });
+    });
+  };
+};
