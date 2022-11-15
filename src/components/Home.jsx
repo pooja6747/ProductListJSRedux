@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { GetApiAction } from "../redux/action";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -18,21 +19,23 @@ const Home = () => {
         style={{
           display: "grid",
           gridGap: "20px",
-          gridTemplateColumns: "repeat(4, 1fr)",
-          gridTemplateRows: "400px 400px 400px",
+          gridTemplateColumns: "repeat(3, 1fr)",
+          gridTemplateRows: "400px 400px 450px",
           width: "100%",
+          marginTop:"20px"
         }}
       >
         {responseData
-          ? responseData.map((product, index) => {
-              const { title, image, price, category } = product;
+          ? responseData.map((product) => {
+              const {id, title, image, price, category } = product;
               return (
                 <>
-                  <div className="card" key={index}>
+                <Link to={`/detail/${id}`}>
+                  <div className="card" key={id}>
                     <img
                       src={image}
                       className="card-img-top"
-                      alt="title"
+                      alt={title}
                       style={{ height: "250px", width: "300px" }}
                     />
                     <div className="card-body">
@@ -41,6 +44,9 @@ const Home = () => {
                       <p className="card-text">{category}</p>
                     </div>
                   </div>
+                 
+                 
+                  </Link>
                 </>
               );
             })
