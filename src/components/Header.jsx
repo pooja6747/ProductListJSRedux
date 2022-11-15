@@ -35,7 +35,7 @@ const Header = () => {
 
        
           <Link className="navbar-brand mx-auto fw-bold" to="/">Online MART</Link>
-        <Login/>
+       
          <LogOut/>
         </nav>
       </div>

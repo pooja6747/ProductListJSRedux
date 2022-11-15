@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { FetchAction } from "../redux/action";
 import { useParams } from "react-router-dom";
+import Header from "./Header";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -19,7 +20,7 @@ const ProductDetail = () => {
         className="container"
        style={{marginTop:"20px"}}
       >
-       
+       <Header/>
      <div className='row' style={{border:"1px solid black"}}>
        <div className='col-md-6 d-flex justify-content-center mx-auto'>
          <img src={responseData.image} alt={responseData.title} style={{height:'400px',width:"200px"}}/>
