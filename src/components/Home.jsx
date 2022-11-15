@@ -1,16 +1,22 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect,useState } from "react";
 import { GetApiAction } from "../redux/action";
 import { Link } from "react-router-dom";
 
 
 const Home = () => {
+  const[isLoading , setIsloading] = useState(false);
   const dispatch = useDispatch();
   const responseData = useSelector((state) => state.reducer.details);
 
   useEffect(() => {
     //for action call use useDispatch
-    dispatch(GetApiAction());
+    setIsloading(true);
+    dispatch(GetApiAction()).then((res)=>{
+      if(res.status === "success"){
+        setIsloading(false)
+      }
+    })
   }, [dispatch]);
 
   return (
@@ -29,7 +35,7 @@ const Home = () => {
       >
        {/* <Header/> */}
     
-        {responseData
+        {isLoading ?<h1>Data loading</h1>: responseData
           ? responseData.map((product) => {
               const {id, title, image, price, category } = product;
               return (
@@ -55,6 +61,8 @@ const Home = () => {
               );
             })
           : null}
+         
+
       </div>
     </>
   );
