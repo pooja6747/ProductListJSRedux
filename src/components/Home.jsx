@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { GetApiAction } from "../redux/action";
 import { Link } from "react-router-dom";
-import Header from "./Header";
+
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ const Home = () => {
 
   return (
     <>
-    <Header/>
+   
       <div
         className="container"
         style={{
@@ -27,6 +27,7 @@ const Home = () => {
           marginTop:"20px"
         }}
       >
+       {/* <Header/> */}
     
         {responseData
           ? responseData.map((product) => {

@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Header from "./Header";
+
 
 const LogOut = () => {
   return (
     <>
-    <Header/>
+  
       {/* <!-- Button trigger modal --> */}
       <button
         type="button"
@@ -20,7 +20,7 @@ const LogOut = () => {
       <div className="modal fade"
     id="logoutModal"
     tabIndex="-1"
-    aria-labelledby="exampleModalLabel"
+    labelled="exampleModalLabel"
     aria-hidden="true">
    
   <div className="modal-dialog">
@@ -34,7 +34,8 @@ const LogOut = () => {
       </div>
       <div className="modal-footer">
         <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-       <Link to="/" className="nav-link"> <button type="button" className="btn btn-primary" data-bs-dismiss="modal">Yes</button></Link>
+       <Link to="/" className="nav-link"> <button className="btn btn-primary">Yes</button></Link>
+     
       </div>
     </div>
   </div>
