@@ -9,7 +9,10 @@ export const GetApiAction = () => {
         type: GET_DETAILS,
         payload: response.data,
       });
+      //for loader
+      return {status : "success"}
     });
+   
   };
 };
 
@@ -20,6 +23,7 @@ export const FetchAction = (id) => {
         type: SELECTED_PRODUCT,
         payload: response.data,
       });
+      return {status : "success"}
     });
   };
 };
