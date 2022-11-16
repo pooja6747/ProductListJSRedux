@@ -31,7 +31,16 @@ const FetchDetails = (id) => {
   return AxiosRequest(`https://fakestoreapi.com/products/${id}`, "GET", headers, {});
 };
 
+
+const AddtoCart = (data) => {
+  const headers = {
+    "Content-type": "application/json",
+  };
+  return AxiosRequest("https://fakestoreapi.com/carts", "POST", headers, data);
+};
+
+
 export {
-  GetApiDetails,FetchDetails
+  GetApiDetails,FetchDetails,AddtoCart
   
 };
