@@ -1,54 +1,74 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { FetchAction } from "../redux/action";
+import { FetchAction,ADD,PostCartAction } from "../redux/action";
 import { useParams } from "react-router-dom";
 
 
 const ProductDetail = () => {
-  const[isLoading , setIsloading] = useState(false);
+  const [isLoading, setIsloading] = useState(false);
   const { id } = useParams();
   const dispatch = useDispatch();
   const [responseData] = useSelector(({ reducer }) => [reducer.product]);
 
+  const state= useSelector((state)=> state.addreducer);
+  console.log(state);
+
   useEffect(() => {
     //for action call use useDispatch
-    setIsloading(true);
-    dispatch(FetchAction(id)).then((res)=>{
-      if(res.status === "success"){
-        setIsloading(false)
+ setIsloading(true);
+    dispatch(FetchAction(id)).then((res) => {
+      if (res.status === "success") {
+        setIsloading(false);
       }
-    })
+    });
   }, [dispatch]);
+
+const handleCart =()=>{
+  //for add 
+ dispatch(PostCartAction(responseData));
+
+
+}
 
   return (
     <>
-    {
-     isLoading ?<h1>Data loading</h1>: responseData && Object.keys(responseData).length ?  
-      <div
-        className="container"
-       style={{marginTop:"20px"}}
-      >
-     
-     <div className='row' style={{border:"1px solid black"}}>
-       <div className='col-md-6 d-flex justify-content-center mx-auto'>
-         <img src={responseData?.image} alt={responseData?.title} style={{height:'400px',width:"200px"}}/>
-       </div>
-
-       <div className='col-md-6 d-flex flex-column justify-content-center'>
-         <h1 className='fw-bold'>{responseData?.title}</h1>
-         <hr/>
-         <h2>${responseData?.price}</h2>
-         <p>{responseData?.category}</p>
+      <div className="ui grid container">
+     {     isLoading ? (
+          <h1>Data loading</h1>
+        ) : 
       
-       </div>
-     </div>
-   </div>
- :
- <div>
-  <h1>No data available</h1>
- </div>
-    }
-     
+        responseData && Object.keys(responseData).length ? (
+          <div className="">
+            <div className="ui two column statable center aligned grid">
+              <div className="middle aligned row">
+             
+                 <div className="column lp">
+                  <img className="ui fluid image" src={responseData?.image} />
+                </div> 
+                <div className="column rp">
+                  <h1>{responseData?.title}</h1>
+                  <h2>
+                    <a className="ui teal tag label">${responseData?.price}</a>
+                  </h2>
+                  <h3 className="ui brown block header">
+                    {responseData?.category}
+                  </h3>
+                  <p>{responseData?.description}</p>
+                  <div className="ui vertical button" tabIndex="0">
+                    {/* <div className="hidden content">
+                      <i className="shop icon"></i>
+                    </div> */}
+                    <div className="visible content" onClick={handleCart}>Add to Cart</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+         </div>
+        ) :null
+        
+             }
+      </div>
+    
     </>
   );
 };

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import CartBtn from "./CartBtn";
 import LogOut from "./LogOut";
 
 const Header = () => {
@@ -44,6 +45,7 @@ const Header = () => {
           </Link>
       
           <LogOut />
+          <CartBtn/>
         </nav>
 
       </div>
