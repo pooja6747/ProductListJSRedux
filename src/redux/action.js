@@ -1,5 +1,5 @@
-import { FetchDetails, GetApiDetails } from "../api/axiosRequest";
-import { GET_DETAILS, SELECTED_PRODUCT } from "./type";
+import { FetchDetails, GetApiDetails,AddtoCart } from "../api/axiosRequest";
+import { GET_DETAILS, SELECTED_PRODUCT,ADD_ITEM } from "./type";
 
 export const GetApiAction = () => {
   //object return
@@ -27,3 +27,18 @@ export const FetchAction = (id) => {
     });
   };
 };
+
+export const PostCartAction = (request) => {
+  console.log(request);
+  return function (dispatch) {
+    return AddtoCart(request).then((response) => {
+      console.log(response);
+
+      dispatch({
+        type: ADD_ITEM,
+        payload: response.data,
+      });
+    });
+  };
+};
+
