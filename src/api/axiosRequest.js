@@ -10,7 +10,7 @@ export async function AxiosRequest(url, method, headers, params) {
       })
     : axios({
         url: url,
-        method: method, 
+        method: method,
         headers: headers,
         data: params,
       });
@@ -28,9 +28,13 @@ const FetchDetails = (id) => {
   const headers = {
     "Content-type": "application/json",
   };
-  return AxiosRequest(`https://fakestoreapi.com/products/${id}`, "GET", headers, {});
+  return AxiosRequest(
+    `https://fakestoreapi.com/products/${id}`,
+    "GET",
+    headers,
+    {}
+  );
 };
-
 
 const AddtoCart = (data) => {
   const headers = {
@@ -39,8 +43,4 @@ const AddtoCart = (data) => {
   return AxiosRequest("https://fakestoreapi.com/carts", "POST", headers, data);
 };
 
-
-export {
-  GetApiDetails,FetchDetails,AddtoCart
-  
-};
+export { GetApiDetails, FetchDetails, AddtoCart };

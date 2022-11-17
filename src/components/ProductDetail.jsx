@@ -1,8 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { FetchAction,ADD,PostCartAction } from "../redux/action";
+import { FetchAction, ADD, PostCartAction } from "../redux/action";
 import { useParams } from "react-router-dom";
-
 
 const ProductDetail = () => {
   const [isLoading, setIsloading] = useState(false);
@@ -10,12 +9,12 @@ const ProductDetail = () => {
   const dispatch = useDispatch();
   const [responseData] = useSelector(({ reducer }) => [reducer.product]);
 
-  const state= useSelector((state)=> state.addreducer);
+  const state = useSelector((state) => state.addreducer);
   console.log(state);
 
   useEffect(() => {
     //for action call use useDispatch
- setIsloading(true);
+    setIsloading(true);
     dispatch(FetchAction(id)).then((res) => {
       if (res.status === "success") {
         setIsloading(false);
@@ -23,28 +22,23 @@ const ProductDetail = () => {
     });
   }, [dispatch]);
 
-const handleCart =()=>{
-  //for add 
- dispatch(PostCartAction(responseData));
-
-
-}
+  const handleCart = () => {
+    //for add
+    dispatch(PostCartAction(responseData));
+  };
 
   return (
     <>
-      <div className="ui grid container">
-     {     isLoading ? (
+      <div className="ui grid container" style={{ marginTop: "10px" }}>
+        {isLoading ? (
           <h1>Data loading</h1>
-        ) : 
-      
-        responseData && Object.keys(responseData).length ? (
+        ) : responseData && Object.keys(responseData).length ? (
           <div className="">
             <div className="ui two column statable center aligned grid">
               <div className="middle aligned row">
-             
-                 <div className="column lp">
+                <div className="column">
                   <img className="ui fluid image" src={responseData?.image} />
-                </div> 
+                </div>
                 <div className="column rp">
                   <h1>{responseData?.title}</h1>
                   <h2>
@@ -55,20 +49,16 @@ const handleCart =()=>{
                   </h3>
                   <p>{responseData?.description}</p>
                   <div className="ui vertical button" tabIndex="0">
-                    {/* <div className="hidden content">
-                      <i className="shop icon"></i>
-                    </div> */}
-                    <div className="visible content" onClick={handleCart}>Add to Cart</div>
+                    <div className="visible content" onClick={handleCart}>
+                      Add to Cart
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-         </div>
-        ) :null
-        
-             }
+          </div>
+        ) : null}
       </div>
-    
     </>
   );
 };

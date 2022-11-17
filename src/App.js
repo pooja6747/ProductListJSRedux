@@ -5,6 +5,7 @@ import Error from "./components/Error";
 import ProductDetail from "./components/ProductDetail";
 import Header from "./components/Header";
 import About from "./components/About";
+import FrontIm from "./components/FrontIm";
 
 
 function App() {
@@ -15,8 +16,10 @@ function App() {
       <BrowserRouter>
         <div className="Container">
         <Header/>
+
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<FrontIm />} />
+            <Route path="home" element={<Home/>}/>
             <Route path="detail/:id" element={<ProductDetail />} />
             <Route path="*" element={<Error />} />
             <Route path="about" element={<About/>}/>

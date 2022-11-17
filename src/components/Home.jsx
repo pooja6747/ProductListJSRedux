@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { GetApiAction } from "../redux/action";
 import { Link } from "react-router-dom";
 
-
 const Home = () => {
   const cardStyle = {
     display: "grid",
@@ -27,64 +26,41 @@ const Home = () => {
 
   return (
     <>
-      <div className="card-container" style={cardStyle}>
-        {isLoading ? (
-          <h1>Data loading</h1>
-        ) : responseData ? (
-          responseData.map((product) => {
-            const { id, title, image, price, category } = product;
-            return (
-              <>
-                {/* <Link to={`/detail/${id}`}>
-                  <div className="card" key={id}>
-                    <img
-                      src={image}
-                      className="card-img-top"
-                      alt={title}
-                      style={{ height: "250px", width: "300px" }}
-                    />
-                    <div className="card-body">
-                      <h5 className="card-title">{title}</h5>
-                      <h5 className="card-title">${price}</h5>
-                      <p className="card-text">{category}</p>
-                    </div>
-                  </div>
-                 
-                 
-                  </Link> */}
-
-               <div className="four wide column" key={id}>
+      <div className="container my-5">
+        <div className="row">
+          <div className="col-12 mb-5">
+            <h1 className="display-6 fw-bolder text-center">Latest Products</h1>
+            <hr />
+          </div>
+        </div>
+        <div className="row justify-content-center mb-4" style={cardStyle}>
+          {isLoading ? (
+            <i class="fa-duotone fa-loader"></i>
+          ) : responseData ? (
+            responseData.map((product) => {
+              const { id, title, image, price, category } = product;
+              return (
+                <>
                   <Link to={`/detail/${id}`}>
-                    <div className="ui link cards">
-                      <div className="card">
-                        <div className="image">
-                          <img src={image} alt={title} />
-                        </div>
-                        <div className="content">
-                          <div className="header">{title}</div>
-                          <div className="meta price">$ {price}</div>
-                          <div className="meta">{category}</div>
-                        </div>
+                    <div className="card h-100 text-center p-4" key={id}>
+                      <img
+                        src={image}
+                        className="card-img-top"
+                        alt={title}
+                        style={{ height: "250px" }}
+                      />
+                      <div className="card-body">
+                        <h5 className="card-title mb-5">{title}</h5>
+                        <h5 className="card-title">${price}</h5>
+                        <p className="card-text">{category}</p>
                       </div>
                     </div>
                   </Link>
-                </div> 
-
-                {/* <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src={image} />
-      <Card.Body>
-        <Card.Title>{title}</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
-      </Card.Body>
-    </Card> */}
-              </>
-            );
-          })
-        ) : null}
+                </>
+              );
+            })
+          ) : null}
+        </div>
       </div>
     </>
   );

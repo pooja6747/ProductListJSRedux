@@ -1,4 +1,4 @@
-import { ADD_ITEM } from "../type";
+import { ADD_ITEM, DELETE_ITEM } from "../type";
 
 const initialState = {
   _products: [],
