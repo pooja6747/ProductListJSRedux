@@ -11,7 +11,6 @@ const initialState = {
 
 //action reducer
 const Reducer = (state = initialState, action) => {
-  console.log("Action",action);
   switch (action.type) {
     case GET_DETAILS:
       return {

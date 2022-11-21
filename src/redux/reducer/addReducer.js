@@ -1,18 +1,26 @@
 import { ADD_ITEM } from "../type";
 
 const initialState = {
-  _products: [],
+  numberCart: 0,
+  sum: 0,
+  Carts: [],
 };
 
 const AddReducer = (state = initialState, action) => {
+  console.log("state",state.sum, "count",action.count);
   switch (action.type) {
     case ADD_ITEM:
-      return {
-        ...state,
+      if (state.numberCart === 0) {
+        let cart = {
+          id: action.id,
+          quantity: action.count,
+        };
+        state.Carts.push(cart);
+      }
 
-        _products: [...state._products, action.payload],
-      };
+      return { ...state, sum: state.sum + action.count };
 
+      break;
     default:
       return state;
   }
