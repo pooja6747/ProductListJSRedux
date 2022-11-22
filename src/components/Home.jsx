@@ -38,17 +38,28 @@ const Home = () => {
     }
 
     setCart([...newCart]);
+
+    //count 0
+    const filteredCount = cart.filter((element, index) => {
+      return element.count >= 1;
+    });
+    setCart(filteredCount);
   };
 
-  const handleCart = (id, count) => {
+  const handleCart = (item) => {
     //for add
-    dispatch(addtoCart(count, id));
+    dispatch(addtoCart(item));
+
     const filteredCart = cart.filter((element, index) => {
-      return element.id !== id;
+      return element.id !== item.id;
     });
     setCart(filteredCart);
   };
 
+  const cardStyle = {
+    marginTop: "50px",
+    marginBottom:"10px"
+  };
   return (
     <>
       <div className="container my-2 py-2">
@@ -56,9 +67,9 @@ const Home = () => {
           <div className="col-12 text-center">
             <h1>Product</h1>
 
-            <div class="row justify-content-around">
+            <div class="row">
               <div
-                className={`row justify-content-around ? col-sm-8 col-md-8 col-lg-8" : "col-sm-8 col-md-8 col-lg-8"}`}
+                className={`row justify-content-around ? col-sm-8 col-md-8 col-lg-8" : "col-sm-4 col-md-4 col-lg-4"}`}
               >
                 {loading ? (
                   <h1>Data loading</h1>
@@ -69,17 +80,17 @@ const Home = () => {
                       return (
                         <>
                           <div
-                            class="card my-5 py-4"
+                            className="card my-5 py-4"
                             key={item.id}
                             style={{ width: "18rem" }}
                           >
                             <img
                               src={item.img}
-                              class="card-img-top"
+                              className="card-img-top"
                               alt={item.title}
                             />
-                            <div class="card-body text-center">
-                              <h5 class="card-title">{item.title}</h5>
+                            <div className="card-body text-center">
+                              <h5 className="card-title">{item.title}</h5>
                               <p className="lead">${item.price}</p>
                               <span
                                 class="btn btn-outline-primary"
@@ -87,11 +98,9 @@ const Home = () => {
                               >
                                 -
                               </span>{" "}
-                              <button className="btn btn-outline-primary">
-                                {cart[cartIndex]?.count}
-                              </button>{" "}
+                              <span>{cart[cartIndex]?.count} </span>{" "}
                               <span
-                                class="btn btn-outline-primary"
+                                className="btn btn-outline-primary"
                                 onClick={() =>
                                   handleAddCart(
                                     item.id,
@@ -112,18 +121,16 @@ const Home = () => {
                 ) : null}
               </div>
 
-              <div
-                className={`col-sm-4 col-md-4 col-lg-4 ? col-sm-4 col-md-4 col-lg-4" : "col-sm-4 col-md-4 col-lg-4"}`}
-              >
+              <div className="col-sm-4 col-md-4 col-lg-4" style={cardStyle}>
                 {show ? (
                   <>
-                    <div class="col-sm-4 col-md-4 col-lg-4">
+                    <div className="col-sm-4 col-md-4 col-lg-4">
                       <div>
                         {cart.map((item) => {
                           return (
                             <>
                               <div
-                                class="card cart"
+                                className="card cart"
                                 style={{ height: "150px", width: "120px" }}
                               >
                                 <img
@@ -134,16 +141,17 @@ const Home = () => {
                                 <div class="card-body text-center">
                                   <h5 class="card-title">{item.name}</h5>
                                   <p className="card-title">
-                                    count:{item.count}
+                                    Count: {item.count}
                                   </p>
                                   <p className="card-title">
-                                    price:{item.price}
+                                    Price: {item.price}
                                   </p>
                                 </div>
                               </div>
 
                               <button
-                                onClick={() => handleCart(item.id, item.count)}
+                                className="btn btn-primary"
+                                onClick={() => handleCart(item)}
                                 style={{ marginTop: "5px" }}
                               >
                                 ADD to cart
