@@ -1,5 +1,5 @@
-import { FetchDetails, GetApiDetails,AddtoCart } from "../api/axiosRequest";
-import { GET_DETAILS, SELECTED_PRODUCT,ADD_ITEM } from "./type";
+import { FetchDetails, GetApiDetails, AddtoCart } from "../api/axiosRequest";
+import { GET_DETAILS, SELECTED_PRODUCT, ADD_ITEM,REMOVE_CART } from "./type";
 
 export const GetApiAction = () => {
   //object return
@@ -10,9 +10,8 @@ export const GetApiAction = () => {
         payload: response.data,
       });
       //for loader
-      return {status : "success"}
+      return { status: "success" };
     });
-   
   };
 };
 
@@ -23,7 +22,7 @@ export const FetchAction = (id) => {
         type: SELECTED_PRODUCT,
         payload: response.data,
       });
-      return {status : "success"}
+      return { status: "success" };
     });
   };
 };
@@ -42,3 +41,17 @@ export const PostCartAction = (request) => {
   };
 };
 
+export const addtoCart = (item) => {
+  return {
+    type: ADD_ITEM,
+   payload: item
+  };
+};
+
+
+export const Remove_cart = id => {
+  return {
+    type: REMOVE_CART,
+    payload: id
+  };
+};
